@@ -1,0 +1,28 @@
+name: Compilación Automática de Tesis
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build_pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extraer código fuente
+        uses: actions/checkout@v4
+
+      - name: Compilar main.tex con XeLaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          compiler: latexmk
+          args: -xelatex -file-line-error -interaction=nonstopmode -synctex=1
+
+      - name: Publicar PDF como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: Tesis_Compilada_PDF
+          path: main.pdf
+          retention-days: 15

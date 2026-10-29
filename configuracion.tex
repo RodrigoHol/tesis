@@ -1,0 +1,181 @@
+% ==================================================
+% IDIOMA Y LOCALIZACIÓN
+% ==================================================
+\usepackage[spanish, mexico, es-tabla]{babel}
+
+% ==================================================
+% ELEMENTOS GRÁFICOS Y TABULARES
+% ==================================================
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{pdfpages}
+\usepackage{caption}
+
+% ==================================================
+% UTILIDADES TIPOGRÁFICAS Y DIBUJO VECTORIAL
+% ==================================================
+\usepackage{xcolor}
+\usepackage{soul}
+\usepackage{comment}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{changepage}
+
+% Optimización de TikZ mediante externalización
+\usepackage{tikz}
+\usetikzlibrary{calc, positioning, arrows.meta}
+% Descomentar las siguientes dos líneas si Overleaf tiene configurado -shell-escape:
+% \usetikzlibrary{external}
+% \tikzexternalize[prefix=tikz_cache/]
+
+% ==================================================
+% TIPOGRAFÍA Y FUENTES (Motor: XeLaTeX)
+% ==================================================
+\usepackage{fontspec}
+
+% Carga directa de familias tipográficas institucionales
+\setmainfont{Times New Roman}
+
+\IfFontExistsTF{Gill Sans}{%
+    \newfontfamily\gillsans{Gill Sans}%
+}{%
+    \newfontfamily\gillsans{TeX Gyre Heros}%
+}
+
+% ==================================================
+% GEOMETRÍA DEL DOCUMENTO
+% ==================================================
+\geometry{
+    letterpaper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm
+}
+
+% ==================================================
+% ESPACIADO E INTERLINEADO
+% ==================================================
+\renewcommand{\normalsize}{%
+    \fontsize{12}{21}\selectfont
+}
+\normalsize
+
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0pt}
+
+% ==================================================
+% ESTRUCTURACIÓN DE ENCABEZADOS Y SECCIONES
+% ==================================================
+\renewcommand{\thechapter}{\Roman{chapter}}
+
+\titleformat{\chapter}
+    {\gillsans\bfseries\fontsize{15}{17}\selectfont}
+    {\thechapter.}
+    {0.5em}
+    {}
+\titlespacing*{\chapter}{0pt}{0pt}{17pt}
+
+\titleformat{name=\chapter,numberless}
+    {\gillsans\bfseries\fontsize{15}{17}\selectfont}
+    {}
+    {0pt}
+    {}
+\titlespacing*{name=\chapter,numberless}{0pt}{0pt}{17pt}
+
+\titleformat{\section}
+    {\normalfont\bfseries\fontsize{14}{21}\selectfont}
+    {\thesection}
+    {0.5em}
+    {}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+
+\titleformat{\subsection}
+    {\normalfont\bfseries\fontsize{12}{21}\selectfont}
+    {\thesubsection}
+    {0.5em}
+    {}
+\titlespacing*{\subsection}{1.25cm}{12pt}{6pt}
+
+\titleformat{\subsubsection}
+    {\normalfont\bfseries\itshape\fontsize{12}{21}\selectfont}
+    {\thesubsubsection}
+    {0.5em}
+    {}
+\titlespacing*{\subsubsection}{1.25cm}{12pt}{6pt}
+
+% ==================================================
+% TÍTULOS DE FIGURAS, TABLAS Y METADATOS
+% ==================================================
+\addto\captionsspanish{%
+    \renewcommand{\contentsname}{Índice}
+}
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+\graphicspath{{imagenes/}}
+
+\DeclareCaptionFont{uvcaption}{%
+    \gillsans\fontsize{10}{12}\selectfont
+}
+
+\captionsetup{
+    font=uvcaption,
+    labelfont=bf,
+    labelsep=period,
+    justification=raggedright,
+    singlelinecheck=false
+}
+
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla}
+
+\newcommand{\notatabla}[1]{%
+    \par{\gillsans\fontsize{10}{12}\selectfont\textbf{Nota:} #1}%
+}
+
+\newcommand{\fuente}[1]{%
+    \par{\gillsans\fontsize{10}{12}\selectfont Referencia: #1}%
+}
+
+% ==================================================
+% CITAS Y GESTIÓN BIBLIOGRÁFICA (BibLaTeX + Biber)
+% ==================================================
+\usepackage{csquotes}
+
+\newenvironment{citalarga}{%
+    \begin{adjustwidth}{1.25cm}{0cm}%
+    \fontsize{10}{18}\selectfont%
+    \setlength{\parindent}{0pt}%
+}{%
+    \end{adjustwidth}%
+}
+
+\usepackage[
+    backend=biber,
+    style=apa,
+    sorting=nyt,
+    maxcitenames=2,
+    mincitenames=1
+]{biblatex}
+
+\addbibresource{referencias.bib}
+
+\AtBeginBibliography{%
+    \gillsans%
+    \fontsize{10}{12}\selectfont%
+    \setlength{\bibhang}{1.25cm}%
+    \setlength{\bibitemsep}{0pt}%
+}
+
+\DefineBibliographyStrings{spanish}{
+    bibliography = {Referencias}
+}
+
+% ==================================================
+% HIPERVÍNCULOS
+% ==================================================
+\usepackage[hidelinks]{hyperref}

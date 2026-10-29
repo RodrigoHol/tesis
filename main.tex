@@ -1,0 +1,64 @@
+\documentclass[letterpaper,11pt]{report}
+
+% ==================================================
+% CONFIGURACIÓN GLOBAL
+% ==================================================
+\input{configuracion}
+
+% ==================================================
+% COMPILACIÓN SELECTIVA: Solo se procesa el Capítulo 3
+% ==================================================
+\includeonly{capitulos/03_descripcion_de_la_propuesta}
+
+\begin{document}
+
+% ==================================================
+% CUBIERTA INICIAL
+% ==================================================
+\pagenumbering{gobble}
+\includepdf[pages=-]{Cubiertas/cubierta_1.pdf}
+\clearpage
+
+% ==================================================
+% PÁGINAS PRELIMINARES
+% ==================================================
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+% \include{preliminares/resumen}
+% \include{preliminares/agradecimientos}
+
+% ==================================================
+% ÍNDICES
+% ==================================================
+\tableofcontents
+\listoffigures
+\listoftables
+\clearpage
+
+% ==================================================
+% CUERPO CAPITULAR
+% ==================================================
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% Si los archivos no existen en Overleaf, deben permanecer comentados:
+% \include{capitulos/01_introduccion}
+% \include{capitulos/02_marco_teorico}
+
+% Capítulo en desarrollo activo
+\include{capitulos/03_descripcion_de_la_propuesta}
+\clearpage
+
+% ==================================================
+% REFERENCIAS
+% ==================================================
+\printbibliography
+\clearpage
+
+% ==================================================
+% CUBIERTA FINAL
+% ==================================================
+\includepdf[pages=-]{Cubiertas/cubierta_2.pdf}
+
+\end{document}
